@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<!-- Bootstrap JS-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    
+    <title>Main</title>
+    <!-- <link rel="stylesheet" href="coba_2.css"> -->
+
+    <!-- Style -->
+    <style>
+		
+		body{
+			background-color: #4aa96c;
+		}
+		
+		.header{
+			background-color: #9fe6a0;
+			height: 60px;
+			border-radius: 0px 0px 25px 25px;
+		}
+		
+		.title{
+			background-color: #9fe6a0;
+			font-family: 'Calibri';
+			border-radius: 25px;
+		}
+		
+		label{
+			font-family: 'Calibri';
+			font-weight: bold;
+			font-size: 20px;
+		}
+		
+		.work{
+			width: 128px;
+		}
+		#age{
+			width: 128px;
+		}
+		
+		#glucose{
+			width: 128px;
+		}
+		
+		#bmi{
+			width: 128px;
+		}
+		#smoke{
+			width:128px;
+		}
+		button{
+			background-color: white;
+			border-radius: 30px;
+			border-color: #9fe6a0;
+			width: 150px;
+			height: 60px;
+			color: black;
+			font-weight: bold;
+			margin-top: 25px;
+		}
+		
+		.predict{
+			font-family: "Calibri";
+			font-weight: "bold";
+			font-size: 25px;
+		}
+		
+		.footer{
+			background-color: #9fe6a0;
+			margin-top: 0px;
+			position: relative;
+			padding:0;
+			width: 100%;
+			height: 20px;
+			border-radius: 25px 25px 0px 0px ;
+		}
+	</style>
+</head>
+<body>
+	<div class="container-fl">
+		<div class="row header">
+			<div class="col-sm text-center title fw-bold p-3 fs-1">Stroke Prediction</div>
+		</div>
+		<div class="row mt-5 justify-content-center">
+			<div class="col-sm-4 title p-5">
+				<form action="/predict" method="post" id="form" >
+					<table border="0" cellspacing="5">
+						<tbody>
+							<tr>
+								<td><label for="gender" class="one">Gender</td>
+								<td>
+									<input type="radio" name="gender" value="male">M</label>
+									<input type="radio" name="gender" value="female">F</label>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="hypertension" class="one">Hypertension</td>
+								<td>
+									<input type="radio" name="hypertension" value="yes">N</label>
+									<input type="radio" name="hypertension" value="no">Y</label>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="heart" class="one">Heart Disease</td>
+								<td>
+									<input type="radio" name="heart" value="yes">N</label>
+									<input type="radio" name="heart" value="no">Y</label>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="married" class="one">Ever Married</td>
+								<td>
+									<input type="radio" name="married" value="yes">N</label>
+									<input type="radio" name="married" value="no">Y</label>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="worktype" class="one">Work Type</td>
+								<td>
+									<select class="work" name="worktype">
+										<option value="blank"></option>
+										<option value="private">Private</option>
+										<option value="self employee">Self Employee</option>
+										<option value="govt job">Goverment Job</option>
+										<option value="childer">Childer</option>
+										<option value="never">Never Work</option>
+									</select>
+								</label>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="residence" class="one">Residence</td>
+								<td>
+									<input type="radio" name="residence" value="urban">Urban</label>
+									<input type="radio" name="residence" value="rural">Rural</label> 
+								</td>
+							</tr>
+							<tr>
+								<td><label for="age">Age</label></td>
+								<td><input type="text" id="age" name="age"></td>
+							</tr>
+							<tr>
+								<td><label for="glucose">Avg Glucose Level</label></td>
+								<td><input type="text" id="glucose" name="glucose"></td>
+							</tr>
+							<tr>
+								<td><label for="bmi">Body Mass Index</label></td>
+								<td><input type="text" id="bmi" name="bmi"></td>
+							</tr>
+							<tr>
+								<td><label for="smoke" class="one">Smoking Status</td>
+								<td>
+									<select id="smoke" name="smoke">
+										<option value="blank"></option>
+										<option value="formerly smoker">Formerly Smoker</option>
+										<option value="smokes">Smokes</option>
+										<option value="never smoker">Never</option>
+									</select>  
+									</label>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<center>
+						<button type="submit" form="form" value="Submit">Submit</button>
+						<div class="predict">
+							{{prediction_text}}
+						</div>
+					</center>
+				</form>
+			</div>
+		</div>
+		
+		<div class="row mt-4">
+			<div class="col-sm title text-center p-3">
+				<center>
+					<p>Made By &#10084; : Izah Husna</p>
+				</center>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>
